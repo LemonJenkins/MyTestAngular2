@@ -4,13 +4,14 @@ import {AppComponent} from './app.component';
 import {HttpModule} from '@angular/http';
 
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './shared/data.service';
+import {InMemoryDataService} from './todos/shared/data.service';
 
 import {FormsModule} from '@angular/forms';
-import {TodoFormComponent} from './todo-form/todo-form.component';
-import {TodoListComponent} from './todo-list/todo-list.component';
-import {TodoItemComponent} from './todo-item/todo-item.component';
-import {TodoService} from './shared/todo.service';
+import {TodosComponent} from './todos/todos.component';
+import {TodoFormComponent} from './todos/todo-form/todo-form.component';
+import {TodoListComponent} from './todos/todo-list/todo-list.component';
+import {TodoItemComponent} from './todos/todo-item/todo-item.component';
+import {TodoService} from './todos/shared/todo.service';
 
 
 @NgModule({
@@ -18,10 +19,11 @@ import {TodoService} from './shared/todo.service';
         BrowserModule,
         FormsModule,
         HttpModule,
-        //InMemoryWebApiModule.forRoot(InMemoryDataService)
+        InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
     declarations: [
         AppComponent,
+        TodosComponent,
         TodoFormComponent,
         TodoListComponent,
         TodoItemComponent

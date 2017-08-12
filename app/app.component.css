@@ -29,7 +29,6 @@ main {
     flex-direction: column;
 }
 
-todo-form,
-todo-list{
+todos{
     width: 100%;
 }

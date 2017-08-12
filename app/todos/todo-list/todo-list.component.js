@@ -9,22 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var todo_service_1 = require('../shared/todo.service');
 var TodoListComponent = (function () {
-    function TodoListComponent(todoService) {
-        this.todoService = todoService;
-        this.todos = [];
+    function TodoListComponent() {
+        this.delete = new core_1.EventEmitter();
+        this.toggle = new core_1.EventEmitter();
     }
-    TodoListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
+    TodoListComponent.prototype.onDelete = function (todo) {
+        this.delete.emit(todo);
     };
-    TodoListComponent.prototype.delete = function (todo) {
-        this.todoService.deleteTodo(todo);
+    TodoListComponent.prototype.onToggle = function (todo) {
+        this.toggle.emit(todo);
     };
-    TodoListComponent.prototype.toggle = function (todo) {
-        this.todoService.toggleTodo(todo);
-    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], TodoListComponent.prototype, "todos", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TodoListComponent.prototype, "delete", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TodoListComponent.prototype, "toggle", void 0);
     TodoListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -32,7 +39,7 @@ var TodoListComponent = (function () {
             templateUrl: 'todo-list.component.html',
             styleUrls: ['todo-list.component.css']
         }), 
-        __metadata('design:paramtypes', [todo_service_1.TodoService])
+        __metadata('design:paramtypes', [])
     ], TodoListComponent);
     return TodoListComponent;
 }());
